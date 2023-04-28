@@ -132,7 +132,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Print the current node first and then recurse on the children
 	public void preOrderStack() {
 		Stack<BSTNode<T>> pre = new Stack<BSTNode<T>>();
+
+		pre.push(root);
 		
+		while(!pre.isEmpty()) {
+			BSTNode<T> currentNode = pre.pop();
+			System.out.print(currentNode + " ");
+
+			if (currentNode.rightChild != null) {
+				pre.push(currentNode.rightChild);
+			}
+			if (currentNode.leftChild != null) {
+				pre.push(currentNode.leftChild);
+			}
+		}
 	}
 		
 
