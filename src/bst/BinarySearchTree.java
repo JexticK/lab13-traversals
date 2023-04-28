@@ -137,7 +137,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//then recursively print the right side of current node
 	//For a bst this will print the values in sorted order from smallest to largest
 	public void inOrder() {
+		System.out.println("Recursive inOrder:");
 		inOrderRecurse(root); 
+		System.out.println();
+		System.out.println("Stack inOrder:");
+		inOrderStack();
+		System.out.println();
 	}
 	
 	public void inOrderRecurse(BSTNode<T> node) {
@@ -151,6 +156,17 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
 		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
+		BSTNode<T> curr = root;
+		while(curr.leftChild != null) {
+			in.push(curr.leftChild);
+			in.push(curr);
+			in.push(curr.rightChild);
+			curr = curr.leftChild;
+		}
+		
+		while(!in.isEmpty()) {
+			System.out.print(in.pop().data + " ");
+		}
 		
 		
 	}
