@@ -161,18 +161,17 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	public void inOrderStack() {
 		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
 		BSTNode<T> curr = root;
-		while(curr.leftChild != null) {
-			in.push(curr.leftChild);
-			in.push(curr);
-			in.push(curr.rightChild);
-			curr = curr.leftChild;
+
+		
+		while(curr != null || in.size() > 0) {
+			while(curr != null) {
+				in.push(curr);
+				curr = curr.leftChild;
+			}
+			curr = in.pop();
+			System.out.print(curr.data + " ");
+			curr = curr.rightChild;
 		}
-		
-		while(!in.isEmpty()) {
-			System.out.print(in.pop().data + " ");
-		}
-		
-		
 	}
 	
 	//Traverse the tree in an postorder fashion
